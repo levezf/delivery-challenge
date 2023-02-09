@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'org.jlleitschuh.gradle.ktlint'
+    id 'io.gitlab.arturbosch.detekt'
 }
 
 android {
@@ -47,3 +48,4 @@ dependencies {
 }
 
 apply from: "$rootDir/ktlint.gradle"
+apply from: "$rootDir/detekt.gradle"
