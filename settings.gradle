@@ -12,5 +12,10 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
 rootProject.name = "DeliveryChallenge"
 include ':app'
