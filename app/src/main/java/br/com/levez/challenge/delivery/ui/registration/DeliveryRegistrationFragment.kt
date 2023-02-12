@@ -17,6 +17,10 @@ class DeliveryRegistrationFragment : Fragment() {
         fun newInstance() = DeliveryRegistrationFragment()
     }
 
+    private val states by lazy {
+        resources.getStringArray(R.array.brazil_states)
+    }
+
     private val viewModel: DeliveryRegistrationViewModel by viewModel()
     private lateinit var binding: FragmentDeliveryRegistrationBinding
 
@@ -29,7 +33,7 @@ class DeliveryRegistrationFragment : Fragment() {
             viewModel = this@DeliveryRegistrationFragment.viewModel
 
             includeBottomButton.bottomActionButton.setOnClickListener {
-                this@DeliveryRegistrationFragment.viewModel.registerDelivery()
+                this@DeliveryRegistrationFragment.viewModel.validateAndRegisterDelivery()
             }
         }
 
@@ -37,6 +41,7 @@ class DeliveryRegistrationFragment : Fragment() {
             uiState.observe(viewLifecycleOwner, ::changeState)
             failure.observe(viewLifecycleOwner, ::showFailure)
         }
+
         return binding.root
     }
 

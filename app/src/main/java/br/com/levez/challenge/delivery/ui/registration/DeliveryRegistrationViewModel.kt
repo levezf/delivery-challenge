@@ -4,14 +4,22 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.distinctUntilChanged
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import br.com.levez.challenge.delivery.R
+import br.com.levez.challenge.delivery.exception.DeliveryException
+import br.com.levez.challenge.delivery.extension.sanitize
+import br.com.levez.challenge.delivery.model.City
 import br.com.levez.challenge.delivery.model.Delivery
 import br.com.levez.challenge.delivery.repository.DeliveryRepository
+import br.com.levez.challenge.delivery.repository.LocalityRepository
+import br.com.levez.challenge.delivery.validator.DeliveryValidator
 import kotlinx.coroutines.launch
 
 class DeliveryRegistrationViewModel(
     private val deliveryRepository: DeliveryRepository,
+    private val localityRepository: LocalityRepository,
 ) : ViewModel() {
     val externalId: MutableLiveData<String?> = MutableLiveData(null)
     val numberOfPackages: MutableLiveData<String?> = MutableLiveData(null)
@@ -25,6 +33,17 @@ class DeliveryRegistrationViewModel(
     val addressStreet: MutableLiveData<String?> = MutableLiveData(null)
     val addressNumber: MutableLiveData<String?> = MutableLiveData(null)
     val addressComplement: MutableLiveData<String?> = MutableLiveData(null)
+
+    val availableCities: LiveData<List<City>?> =
+        Transformations.switchMap(addressState) { state ->
+            liveData {
+                if (state.isNullOrBlank()) {
+                    emit(null)
+                } else {
+                    emit(localityRepository.getCitiesByState(state))
+                }
+            }
+        }.distinctUntilChanged()
 
     private val _failure = MutableLiveData<Int?>(null)
     val failure: LiveData<Int?>
@@ -40,27 +59,35 @@ class DeliveryRegistrationViewModel(
             state == DeliveryRegistrationUiState.Editing
         }
 
-    fun registerDelivery() {
+    init {
+        availableCities.observeForever {
+            addressCity.value = null
+        }
+    }
+
+    fun validateAndRegisterDelivery() {
         viewModelScope.launch {
             _uiState.value = DeliveryRegistrationUiState.Registering
 
             val delivery = Delivery(
-                externalId.value.orEmpty().trim(),
-                numberOfPackages.value.orEmpty().trim(),
-                deadline.value.orEmpty().trim(),
-                customerName.value.orEmpty().trim(),
-                customerCpf.value.orEmpty().trim(),
-                addressZipCode.value.orEmpty().trim(),
-                addressState.value.orEmpty().trim(),
-                addressCity.value.orEmpty().trim(),
-                addressNeighborhood.value.orEmpty().trim(),
-                addressStreet.value.orEmpty().trim(),
-                addressNumber.value.orEmpty().trim(),
-                addressComplement.value.orEmpty().trim(),
+                externalId.value.sanitize(),
+                numberOfPackages.value.sanitize(),
+                deadline.value.sanitize(),
+                customerName.value.sanitize(),
+                customerCpf.value.sanitize(),
+                addressZipCode.value.sanitize(),
+                addressState.value.sanitize(),
+                addressCity.value.sanitize(),
+                addressNeighborhood.value.sanitize(),
+                addressStreet.value.sanitize(),
+                addressNumber.value.sanitize(),
+                addressComplement.value.sanitize(),
             )
 
-            if (delivery.isInvalid()) {
-                _failure.value = R.string.error_required_fields
+            try {
+                DeliveryValidator.validate(delivery)
+            } catch (e: DeliveryException) {
+                _failure.value = e.messageId
                 _uiState.value = DeliveryRegistrationUiState.Editing
                 return@launch
             }

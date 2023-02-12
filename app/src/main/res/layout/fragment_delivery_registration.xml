@@ -200,14 +200,20 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/input_layout_zip_code">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edit_text_state"
+                        <br.com.levez.challenge.delivery.ui.common.customview.SelectableAutoCompleteTextView
+                            android:id="@+id/auto_complete_state"
+                            style="@style/Widget.MaterialComponents.AutoCompleteTextView.FilledBox"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:completionThreshold="0"
+                            android:focusable="true"
+                            android:focusableInTouchMode="false"
                             android:hint="@string/hint_address_state"
                             android:imeOptions="actionNext"
-                            android:inputType="textNoSuggestions"
-                            android:text="@={viewModel.addressState}" />
+                            android:inputType="none"
+                            android:text="@={viewModel.addressState}"
+                            app:simpleItems="@array/brazil_states" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -225,14 +231,20 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/input_layout_state">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edit_text_city"
+                        <br.com.levez.challenge.delivery.ui.common.customview.SelectableAutoCompleteTextView
+                            android:id="@+id/auto_complete_city"
+                            style="@style/Widget.MaterialComponents.AutoCompleteTextView.FilledBox"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:completionThreshold="0"
+                            android:focusable="true"
+                            android:focusableInTouchMode="false"
                             android:hint="@string/hint_address_city"
                             android:imeOptions="actionNext"
-                            android:inputType="textPostalAddress"
-                            android:text="@={viewModel.addressCity}" />
+                            android:inputType="none"
+                            android:text="@={viewModel.addressCity}"
+                            app:availableCities="@{viewModel.availableCities}" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -327,7 +339,7 @@
                             android:id="@+id/edit_text_complement"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:hint="@string/hint_address_number"
+                            android:hint="@string/hint_address_complement"
                             android:imeOptions="actionDone"
                             android:inputType="textPostalAddress|textCapWords"
                             android:text="@={viewModel.addressComplement}" />
