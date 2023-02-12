@@ -17,10 +17,6 @@ class DeliveryRegistrationFragment : Fragment() {
         fun newInstance() = DeliveryRegistrationFragment()
     }
 
-    private val states by lazy {
-        resources.getStringArray(R.array.brazil_states)
-    }
-
     private val viewModel: DeliveryRegistrationViewModel by viewModel()
     private lateinit var binding: FragmentDeliveryRegistrationBinding
 
