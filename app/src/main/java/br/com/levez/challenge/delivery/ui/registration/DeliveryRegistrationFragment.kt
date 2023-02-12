@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import br.com.levez.challenge.delivery.R
 import br.com.levez.challenge.delivery.databinding.FragmentDeliveryRegistrationBinding
+import br.com.levez.challenge.delivery.ui.registration.mask.DateTextWatcher
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -32,6 +34,8 @@ class DeliveryRegistrationFragment : Fragment() {
             includeBottomButton.bottomActionButton.setOnClickListener {
                 this@DeliveryRegistrationFragment.viewModel.validateAndRegisterDelivery()
             }
+
+            editTextDeadline.addTextChangedListener(DateTextWatcher())
         }
 
         with(viewModel) {
@@ -58,14 +62,20 @@ class DeliveryRegistrationFragment : Fragment() {
     }
 
     private fun showContentRegistering() {
-        binding.includeBottomButton.bottomActionButton.text = getString(R.string.text_registering)
+        binding.includeBottomButton.bottomActionButton.apply {
+            text = getString(R.string.text_registering)
+            isEnabled = false
+        }
     }
 
     private fun showContentEditing() {
-        binding.includeBottomButton.bottomActionButton.text = getString(R.string.text_create)
+        binding.includeBottomButton.bottomActionButton.apply {
+            text = getString(R.string.text_create)
+            isEnabled = true
+        }
     }
 
     private fun finish() {
-//        findNavController().popBackStack()
+        findNavController().popBackStack()
     }
 }
