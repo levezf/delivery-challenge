@@ -38,17 +38,6 @@ data class Delivery(
     @PrimaryKey(autoGenerate = true)
     val id: Long? = null,
 ) {
-    fun isInvalid() = externalId.isBlank() ||
-            numberOfPackages.isBlank() ||
-            deadline.isBlank() ||
-            customerName.isBlank() ||
-            customerCpf.isBlank() ||
-            addressZipCode.isBlank() ||
-            addressState.isBlank() ||
-            addressCity.isBlank() ||
-            addressNeighborhood.isBlank() ||
-            addressStreet.isBlank() ||
-            addressNumber.isBlank()
 
     fun isNewUser() = id == null
 }
