@@ -10,8 +10,7 @@ import androidx.room.PrimaryKey
     indices = [Index(value = ["id", "external_id"], unique = true)]
 )
 data class Delivery(
-    @PrimaryKey(autoGenerate = true)
-    val id: Long? = null,
+
     @ColumnInfo("external_id")
     val externalId: String,
     @ColumnInfo("number_of_packages")
@@ -35,19 +34,21 @@ data class Delivery(
     @ColumnInfo("address_number")
     val addressNumber: String,
     @ColumnInfo("address_complement")
-    val addressComplement: String?,
+    val addressComplement: String,
+    @PrimaryKey(autoGenerate = true)
+    val id: Long? = null,
 ) {
-    fun isValid() = externalId.isNotBlank() &&
-            numberOfPackages.isNotBlank() &&
-            deadline.isNotBlank() &&
-            customerName.isNotBlank() &&
-            customerCpf.isNotBlank() &&
-            addressZipCode.isNotBlank() &&
-            addressState.isNotBlank() &&
-            addressCity.isNotBlank() &&
-            addressNeighborhood.isNotBlank() &&
-            addressStreet.isNotBlank() &&
-            addressNumber.isNotBlank()
+    fun isInvalid() = externalId.isBlank() ||
+            numberOfPackages.isBlank() ||
+            deadline.isBlank() ||
+            customerName.isBlank() ||
+            customerCpf.isBlank() ||
+            addressZipCode.isBlank() ||
+            addressState.isBlank() ||
+            addressCity.isBlank() ||
+            addressNeighborhood.isBlank() ||
+            addressStreet.isBlank() ||
+            addressNumber.isBlank()
 
     fun isNewUser() = id == null
 }

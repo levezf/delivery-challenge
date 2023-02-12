@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget.DeliveryChallenge.Button" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/shape_bottom_button</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="cornerRadius">@dimen/radius_default_button</item>
+        <item name="android:layout_marginEnd">@dimen/padding_default_horizontal</item>
+        <item name="android:layout_marginStart">@dimen/padding_default_horizontal</item>
+        <item name="android:layout_marginTop">@dimen/margin_horizontal_bottom_button</item>
+        <item name="android:layout_marginBottom">@dimen/margin_horizontal_bottom_button</item>
+    </style>
+
+    <style name="Widget.DeliveryChallenge.TextInputLayout.OutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox" />
+</resources>

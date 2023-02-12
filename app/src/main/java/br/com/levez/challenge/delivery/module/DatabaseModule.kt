@@ -4,5 +4,5 @@ import br.com.levez.challenge.delivery.database.DeliveryExpressDatabase
 import org.koin.dsl.module
 
 val databaseModule = module {
-    single { DeliveryExpressDatabase.getDatabase(get()) }
+    single { DeliveryExpressDatabase.getDatabase(get()).deliveryDao() }
 }
