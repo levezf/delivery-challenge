@@ -19,16 +19,16 @@ object DeliveryValidator {
 
     private fun Delivery.isRequiredFieldsNotFilled(): Boolean =
         externalId.isBlank() ||
-                numberOfPackages.isBlank() ||
-                deadline.isBlank() ||
-                customerName.isBlank() ||
-                customerCpf.isBlank() ||
-                addressZipCode.isBlank() ||
-                addressState.isBlank() ||
-                addressCity.isBlank() ||
-                addressNeighborhood.isBlank() ||
-                addressStreet.isBlank() ||
-                addressNumber.isBlank()
+            numberOfPackages.isBlank() ||
+            deadline.isBlank() ||
+            customerName.isBlank() ||
+            customerCpf.isBlank() ||
+            addressZipCode.isBlank() ||
+            addressState.isBlank() ||
+            addressCity.isBlank() ||
+            addressNeighborhood.isBlank() ||
+            addressStreet.isBlank() ||
+            addressNumber.isBlank()
 
     private fun Delivery.isInvalidCPF(): Boolean {
         if (customerCpf.isEmpty()) return true

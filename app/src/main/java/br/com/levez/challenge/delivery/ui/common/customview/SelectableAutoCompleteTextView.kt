@@ -2,9 +2,7 @@ package br.com.levez.challenge.delivery.ui.common.customview
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.KeyEvent
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
-
 
 class SelectableAutoCompleteTextView : MaterialAutoCompleteTextView {
 
@@ -15,7 +13,7 @@ class SelectableAutoCompleteTextView : MaterialAutoCompleteTextView {
     constructor(
         context: Context,
         attributeSet:
-        AttributeSet,
+            AttributeSet,
         defStyleAttr: Int,
     ) : super(context, attributeSet, defStyleAttr)
 
@@ -28,7 +26,6 @@ class SelectableAutoCompleteTextView : MaterialAutoCompleteTextView {
             }
         }
     }
-
 
     override fun enoughToFilter(): Boolean = true
 }

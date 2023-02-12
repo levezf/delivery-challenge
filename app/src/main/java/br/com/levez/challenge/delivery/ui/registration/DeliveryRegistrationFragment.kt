@@ -25,7 +25,8 @@ class DeliveryRegistrationFragment : Fragment() {
     private lateinit var binding: FragmentDeliveryRegistrationBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
         binding = FragmentDeliveryRegistrationBinding.inflate(inflater).apply {
