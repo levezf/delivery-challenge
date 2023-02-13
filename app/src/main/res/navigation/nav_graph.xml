@@ -7,5 +7,16 @@
     <fragment
         android:id="@+id/deliveryRegistrationFragment"
         android:name="br.com.levez.challenge.delivery.ui.registration.DeliveryRegistrationFragment"
-        android:label="DeliveryRegistrationFragment" />
+        android:label="DeliveryRegistrationFragment" >
+
+        <action
+            android:id="@+id/action_deliveryRegistrationFragment_to_noConnectionActivity"
+            app:destination="@id/noConnectionActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/noConnectionActivity"
+        android:name="br.com.levez.challenge.delivery.ui.connection.NoConnectionActivity"
+        android:label="NoConnectionActivity" />
+
+
 </navigation>

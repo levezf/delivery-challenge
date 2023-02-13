@@ -24,4 +24,8 @@
     <string name="text_registering">Salvando…</string>
     <string name="text_create">Salvar</string>
 
+
+    <!--  No connection  -->
+    <string name="error_no_connection">Sem conexão.\nPor favor conecte-se a uma rede para continuar.</string>
+
 </resources>
