@@ -28,7 +28,7 @@ class DateTextWatcher : TextWatcher {
 
         val editableLength = editable.length
 
-        if (editableLength >= DATE_MASK.length) {
+        if (editableLength == 0 || editableLength >= DATE_MASK.length) {
             isRunning = false
             return
         }
