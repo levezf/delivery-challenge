@@ -1,4 +1,4 @@
-package br.com.levez.challenge.delivery.network
+package br.com.levez.challenge.delivery.network.api
 
 import br.com.levez.challenge.delivery.model.City
 import retrofit2.http.GET
