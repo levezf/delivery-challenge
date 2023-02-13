@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import br.com.levez.challenge.delivery.R
 import br.com.levez.challenge.delivery.databinding.FragmentDeliveryRegistrationBinding
+import br.com.levez.challenge.delivery.network.manager.ConnectionState
 import br.com.levez.challenge.delivery.ui.registration.mask.DateTextWatcher
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -41,9 +42,18 @@ class DeliveryRegistrationFragment : Fragment() {
         with(viewModel) {
             uiState.observe(viewLifecycleOwner, ::changeState)
             failure.observe(viewLifecycleOwner, ::showFailure)
+            internetConnectionState.observe(viewLifecycleOwner, ::changeInternetConnection)
         }
-
         return binding.root
+    }
+
+    private fun changeInternetConnection(connectionState: ConnectionState) {
+        if (connectionState == ConnectionState.NOT_CONNECTED) {
+            findNavController().navigate(
+                DeliveryRegistrationFragmentDirections
+                    .actionDeliveryRegistrationFragmentToNoConnectionActivity()
+            )
+        }
     }
 
     private fun showFailure(@StringRes failureRes: Int?) {
@@ -57,8 +67,13 @@ class DeliveryRegistrationFragment : Fragment() {
         when (uiState) {
             DeliveryRegistrationUiState.Editing -> showContentEditing()
             DeliveryRegistrationUiState.Registering -> showContentRegistering()
+            DeliveryRegistrationUiState.NoInternetConnection -> showNotInternetError()
             DeliveryRegistrationUiState.Registered -> finish()
         }
+    }
+
+    private fun showNotInternetError() {
+        binding.includeBottomButton.bottomActionButton.isEnabled = false
     }
 
     private fun showContentRegistering() {

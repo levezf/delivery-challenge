@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.distinctUntilChanged
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
@@ -12,6 +13,7 @@ import br.com.levez.challenge.delivery.exception.DeliveryException
 import br.com.levez.challenge.delivery.extension.sanitize
 import br.com.levez.challenge.delivery.model.City
 import br.com.levez.challenge.delivery.model.Delivery
+import br.com.levez.challenge.delivery.network.manager.INetworkManager
 import br.com.levez.challenge.delivery.repository.DeliveryRepository
 import br.com.levez.challenge.delivery.repository.LocalityRepository
 import br.com.levez.challenge.delivery.validator.DeliveryValidator
@@ -20,6 +22,7 @@ import kotlinx.coroutines.launch
 class DeliveryRegistrationViewModel(
     private val deliveryRepository: DeliveryRepository,
     private val localityRepository: LocalityRepository,
+    private val networkManager: INetworkManager,
 ) : ViewModel() {
     val externalId: MutableLiveData<String?> = MutableLiveData(null)
     val numberOfPackages: MutableLiveData<String?> = MutableLiveData(null)
@@ -34,16 +37,17 @@ class DeliveryRegistrationViewModel(
     val addressNumber: MutableLiveData<String?> = MutableLiveData(null)
     val addressComplement: MutableLiveData<String?> = MutableLiveData(null)
 
-    val availableCities: LiveData<List<City>?> =
-        Transformations.switchMap(addressState) { state ->
-            liveData {
-                if (state.isNullOrBlank()) {
-                    emit(null)
-                } else {
-                    emit(localityRepository.getCitiesByState(state))
-                }
+    val internetConnectionState = networkManager.connectionState().asLiveData()
+
+    val availableCities: LiveData<List<City>?> = Transformations.switchMap(addressState) { state ->
+        liveData {
+            if (state.isNullOrBlank()) {
+                emit(null)
+            } else {
+                emit(localityRepository.getCitiesByState(state))
             }
-        }.distinctUntilChanged()
+        }
+    }.distinctUntilChanged()
 
     private val _failure = MutableLiveData<Int?>(null)
     val failure: LiveData<Int?>
@@ -113,4 +117,5 @@ sealed interface DeliveryRegistrationUiState {
     object Registering : DeliveryRegistrationUiState
     object Editing : DeliveryRegistrationUiState
     object Registered : DeliveryRegistrationUiState
+    object NoInternetConnection : DeliveryRegistrationUiState
 }
