@@ -69,7 +69,7 @@ class DeliveryListFragment : Fragment() {
         }
     }
 
-    private fun openDeliveryRegistration(void: Void?) {
+    private fun openDeliveryRegistration(@Suppress("UNUSED_PARAMETER") void: Void?) {
         findNavController().navigate(
             DeliveryListFragmentDirections
                 .actionDeliveryListFragmentToDeliveryRegistrationFragment()

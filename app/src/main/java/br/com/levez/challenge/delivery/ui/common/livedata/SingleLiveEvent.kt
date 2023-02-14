@@ -2,9 +2,7 @@ package br.com.levez.challenge.delivery.ui.common.livedata
 
 import android.util.Log
 import androidx.annotation.MainThread
-
 import androidx.lifecycle.LifecycleOwner
-
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import java.util.concurrent.atomic.AtomicBoolean

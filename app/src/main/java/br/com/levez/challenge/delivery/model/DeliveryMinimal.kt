@@ -2,9 +2,6 @@ package br.com.levez.challenge.delivery.model
 
 import androidx.room.ColumnInfo
 import androidx.room.DatabaseView
-import androidx.room.Entity
-import androidx.room.Index
-import androidx.room.PrimaryKey
 
 @DatabaseView(
     """

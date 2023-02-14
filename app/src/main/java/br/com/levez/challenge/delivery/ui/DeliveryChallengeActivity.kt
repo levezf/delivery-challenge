@@ -19,8 +19,10 @@ class DeliveryChallengeActivity : AppCompatActivity(), NavController.OnDestinati
     private lateinit var binding: ActivityDeliveryChallengeBinding
 
     private val navController by lazy {
-        (supportFragmentManager
-            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment).navController
+        (
+            supportFragmentManager
+                .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+            ).navController
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
