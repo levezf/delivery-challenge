@@ -1,4 +1,4 @@
-package br.com.levez.challenge.delivery.di
+package br.com.levez.challenge.delivery.repository
 
 import br.com.levez.challenge.delivery.repository.DeliveryRepository
 import br.com.levez.challenge.delivery.repository.LocalityRepository

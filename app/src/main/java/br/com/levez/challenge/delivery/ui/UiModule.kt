@@ -1,4 +1,4 @@
-package br.com.levez.challenge.delivery.di
+package br.com.levez.challenge.delivery.ui
 
 import br.com.levez.challenge.delivery.ui.connection.NoConnectionViewModel
 import br.com.levez.challenge.delivery.ui.registration.DeliveryRegistrationViewModel

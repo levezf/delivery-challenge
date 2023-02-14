@@ -1,4 +1,4 @@
-package br.com.levez.challenge.delivery.di
+package br.com.levez.challenge.delivery.network
 
 import android.content.Context
 import br.com.levez.challenge.delivery.BuildConfig

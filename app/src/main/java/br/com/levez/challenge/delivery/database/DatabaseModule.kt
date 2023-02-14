@@ -1,6 +1,5 @@
-package br.com.levez.challenge.delivery.di
+package br.com.levez.challenge.delivery.database
 
-import br.com.levez.challenge.delivery.database.DeliveryExpressDatabase
 import br.com.levez.challenge.delivery.database.dao.DeliveryDao
 import org.koin.dsl.module
 

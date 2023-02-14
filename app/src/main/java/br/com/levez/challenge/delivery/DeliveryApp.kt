@@ -1,11 +1,11 @@
 package br.com.levez.challenge.delivery
 
 import android.app.Application
-import br.com.levez.challenge.delivery.di.databaseModule
-import br.com.levez.challenge.delivery.di.deliveryRegistrationModule
-import br.com.levez.challenge.delivery.di.networkModule
-import br.com.levez.challenge.delivery.di.noConnectionModule
-import br.com.levez.challenge.delivery.di.repositoryModule
+import br.com.levez.challenge.delivery.database.databaseModule
+import br.com.levez.challenge.delivery.ui.deliveryRegistrationModule
+import br.com.levez.challenge.delivery.network.networkModule
+import br.com.levez.challenge.delivery.ui.noConnectionModule
+import br.com.levez.challenge.delivery.repository.repositoryModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
