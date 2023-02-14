@@ -26,6 +26,8 @@
     <string name="text_registering">Salvando…</string>
     <string name="text_create">Salvar</string>
     <string name="text_loading">Aguarde…</string>
+    <string name="error_cannot_delete_delivery">Não foi possível remover a entrega.</string>
+    <string name="delete_delivery">Remover entrega</string>
 
     <!--  No connection  -->
     <string name="title_no_connection">Sem conexão</string>
@@ -35,6 +37,5 @@
     <string name="title_delivery">Entregas</string>
     <string name="button_new_delivery">Nova entrega</string>
     <string name="message_empty_delivery_list">Você ainda não possui entregas cadastradas. Clique no botão abaixo para adicionar uma nova entrega.</string>
-
 
 </resources>
