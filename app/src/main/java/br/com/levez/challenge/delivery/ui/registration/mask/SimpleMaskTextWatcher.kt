@@ -14,6 +14,7 @@ class SimpleMaskTextWatcher private constructor(
         private const val DATE_MASK = "##/##/####"
         private const val CEP_MASK = "#####-###"
         private const val CPF_MASK = "###.###.###-##"
+        private const val PLACEHOLDER_CHAR = '#'
 
         fun date(editText: TextInputEditText): SimpleMaskTextWatcher =
             SimpleMaskTextWatcher(editText, DATE_MASK)
@@ -44,18 +45,11 @@ class SimpleMaskTextWatcher private constructor(
         val strWithMask = buildString {
             var i = 0
             for (char in mask.toCharArray()) {
-                if (char != '#' && str.length > old.length) {
-                    append(char)
-                    continue
+                when {
+                    char != PLACEHOLDER_CHAR && str.length > old.length -> append(char)
+                    i < str.length -> append(str[i++])
+                    else -> break
                 }
-                append(
-                    try {
-                        str[i]
-                    } catch (e: Exception) {
-                        break
-                    }
-                )
-                i++
             }
         }
 
@@ -67,6 +61,6 @@ class SimpleMaskTextWatcher private constructor(
     }
 
     override fun afterTextChanged(editable: Editable?) {
-       // Do nothing
+        // Do nothing
     }
 }

@@ -28,16 +28,16 @@ object DeliveryValidator {
 
     private fun Delivery.isRequiredFieldsNotFilled(): Boolean =
         externalId.isBlank() ||
-                numberOfPackages.isBlank() ||
-                deadline.isBlank() ||
-                customerName.isBlank() ||
-                customerCpf.isBlank() ||
-                addressZipCode.isBlank() ||
-                addressState.isBlank() ||
-                addressCity.isBlank() ||
-                addressNeighborhood.isBlank() ||
-                addressStreet.isBlank() ||
-                addressNumber.isBlank()
+            numberOfPackages.isBlank() ||
+            deadline.isBlank() ||
+            customerName.isBlank() ||
+            customerCpf.isBlank() ||
+            addressZipCode.isBlank() ||
+            addressState.isBlank() ||
+            addressCity.isBlank() ||
+            addressNeighborhood.isBlank() ||
+            addressStreet.isBlank() ||
+            addressNumber.isBlank()
 
     private fun Delivery.isInvalidCPF(): Boolean {
         val cpf = customerCpf.onlyDigits()
@@ -60,7 +60,7 @@ object DeliveryValidator {
                 }.takeIf { it <= MAX_VALUE_DIGIT } ?: DEFAULT_DIGIT_VALUE
 
                 cpf[POSITION_VERIFYING_DIGIT_1].digitToInt() != digit1 ||
-                        cpf[POSITION_VERIFYING_DIGIT_2].digitToInt() != digit2
+                    cpf[POSITION_VERIFYING_DIGIT_2].digitToInt() != digit2
             }
         }
     }
