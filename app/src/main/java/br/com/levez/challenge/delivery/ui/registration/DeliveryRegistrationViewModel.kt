@@ -195,6 +195,20 @@ class DeliveryRegistrationViewModel(
             _uiState.value = DeliveryRegistrationUiState.Editing
         }
     }
+
+    fun deleteDelivery() {
+        viewModelScope.launch {
+            _uiState.value = DeliveryRegistrationUiState.Loading
+
+            idDelivery?.let { id ->
+                deliveryRepository.deleteDeliveryById(id)
+                _uiState.value = DeliveryRegistrationUiState.Finished
+            } ?: run {
+                _failure.value = R.string.error_cannot_delete_delivery
+                _uiState.value = DeliveryRegistrationUiState.Editing
+            }
+        }
+    }
 }
 
 sealed interface DeliveryRegistrationUiState {

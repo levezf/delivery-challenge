@@ -16,4 +16,6 @@ class DeliveryRepository(private val deliveryDao: DeliveryDao) {
         deliveryDao.existsExternalId(externalId) > 0
 
     suspend fun getDeliveryById(id: Long): Delivery? = deliveryDao.getById(id)
+
+    suspend fun deleteDeliveryById(id: Long) = deliveryDao.deleteById(id)
 }

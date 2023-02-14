@@ -12,7 +12,6 @@ import androidx.navigation.ui.setupWithNavController
 import br.com.levez.challenge.delivery.R
 import br.com.levez.challenge.delivery.databinding.ActivityDeliveryChallengeBinding
 import br.com.levez.challenge.delivery.ui.common.extension.applyNavigationBackIcon
-import br.com.levez.challenge.delivery.ui.common.extension.applyTitle
 import br.com.levez.challenge.delivery.ui.common.extension.isAppBarVisible
 
 class DeliveryChallengeActivity : AppCompatActivity(), NavController.OnDestinationChangedListener {
@@ -20,10 +19,8 @@ class DeliveryChallengeActivity : AppCompatActivity(), NavController.OnDestinati
     private lateinit var binding: ActivityDeliveryChallengeBinding
 
     private val navController by lazy {
-        (
-            supportFragmentManager
-                .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-            ).navController
+        (supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment)
+            .navController
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +29,7 @@ class DeliveryChallengeActivity : AppCompatActivity(), NavController.OnDestinati
             this@DeliveryChallengeActivity,
             R.layout.activity_delivery_challenge
         ).apply {
+            setSupportActionBar(toolbar)
             toolbar.setupWithNavController(
                 navController,
                 AppBarConfiguration(navController.graph)
@@ -48,7 +46,6 @@ class DeliveryChallengeActivity : AppCompatActivity(), NavController.OnDestinati
     ) {
         binding.apply {
             toolbar.applyNavigationBackIcon()
-            toolbar.applyTitle(arguments)
             layoutAppBar.isVisible = arguments.isAppBarVisible()
         }
     }

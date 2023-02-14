@@ -21,4 +21,7 @@ interface DeliveryDao {
 
     @Query("SELECT * FROM deliveries WHERE id = :id")
     suspend fun getById(id: Long): Delivery?
+
+    @Query("DELETE FROM deliveries WHERE id = :id")
+    suspend fun deleteById(id: Long)
 }

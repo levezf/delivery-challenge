@@ -2,11 +2,17 @@ package br.com.levez.challenge.delivery.ui.registration
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.annotation.StringRes
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import br.com.levez.challenge.delivery.R
@@ -31,6 +37,9 @@ class DeliveryRegistrationFragment : Fragment() {
         if (savedInstanceState == null) {
             viewModel.idDelivery = args.idDelivery?.toLongOrNull()
         }
+        requireActivity().title = args.idDelivery?.let { id ->
+            getString(R.string.title_editing_delivery, id)
+        } ?: getString(R.string.title_registration_delivery)
     }
 
     override fun onCreateView(
@@ -54,6 +63,13 @@ class DeliveryRegistrationFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if (viewModel.idDelivery != null) {
+            initializeMenu()
+        }
     }
 
     private fun FragmentDeliveryRegistrationBinding.initializeListeners() {
@@ -111,6 +127,26 @@ class DeliveryRegistrationFragment : Fragment() {
                 finish()
             }
         }
+    }
+
+    private fun initializeMenu() {
+        val menuHost: MenuHost = requireActivity()
+        menuHost.addMenuProvider(
+            object : MenuProvider {
+                override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                    menuInflater.inflate(R.menu.menu_delivery, menu)
+                }
+
+                override fun onMenuItemSelected(menuItem: MenuItem): Boolean =
+                    if (menuItem.itemId == R.id.action_delete_delivery) {
+                        viewModel.deleteDelivery()
+                        true
+                    } else {
+                        false
+                    }
+            },
+            viewLifecycleOwner, Lifecycle.State.RESUMED
+        )
     }
 
     private fun setBottomButtonState(enable: Boolean = false, @StringRes stringRes: Int? = null) {
