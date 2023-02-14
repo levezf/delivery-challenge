@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import br.com.levez.challenge.delivery.R
 import br.com.levez.challenge.delivery.databinding.FragmentDeliveryRegistrationBinding
 import br.com.levez.challenge.delivery.network.manager.ConnectionState
-import br.com.levez.challenge.delivery.ui.registration.mask.DateTextWatcher
+import br.com.levez.challenge.delivery.ui.registration.mask.SimpleMaskTextWatcher
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -36,7 +36,8 @@ class DeliveryRegistrationFragment : Fragment() {
                 this@DeliveryRegistrationFragment.viewModel.validateAndRegisterDelivery()
             }
 
-            editTextDeadline.addTextChangedListener(DateTextWatcher())
+            editTextDeadline.addTextChangedListener(SimpleMaskTextWatcher.date())
+            editTextZipCode.addTextChangedListener(SimpleMaskTextWatcher.cep())
         }
 
         with(viewModel) {

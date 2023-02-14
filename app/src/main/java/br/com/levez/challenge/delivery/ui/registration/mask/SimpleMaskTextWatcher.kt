@@ -3,9 +3,14 @@ package br.com.levez.challenge.delivery.ui.registration.mask
 import android.text.Editable
 import android.text.TextWatcher
 
-class DateTextWatcher : TextWatcher {
+class SimpleMaskTextWatcher private constructor(private val mask: String) : TextWatcher {
     companion object {
         private const val DATE_MASK = "##/##/####"
+        private const val CEP_MASK = "#####-###"
+
+        fun date(): SimpleMaskTextWatcher = SimpleMaskTextWatcher(DATE_MASK)
+
+        fun cep(): SimpleMaskTextWatcher = SimpleMaskTextWatcher(CEP_MASK)
     }
 
     private var isRunning = false
@@ -20,25 +25,23 @@ class DateTextWatcher : TextWatcher {
     }
 
     override fun afterTextChanged(editable: Editable?) {
-        if (editable == null || isRunning || isDeleting) {
-            return
-        }
+        if (editable == null || isRunning || isDeleting) return
 
         isRunning = true
 
         val editableLength = editable.length
 
-        if (editableLength == 0 || editableLength >= DATE_MASK.length) {
+        if (editableLength == 0 || editableLength >= mask.length) {
             isRunning = false
             return
         }
 
-        if (DATE_MASK[editableLength] != '#') {
-            editable.append(DATE_MASK[editableLength])
-        } else if (DATE_MASK[editableLength - 1] != '#') {
+        if (mask[editableLength] != '#') {
+            editable.append(mask[editableLength])
+        } else if (mask[editableLength - 1] != '#') {
             editable.insert(
                 editableLength - 1,
-                DATE_MASK,
+                mask,
                 editableLength - 1,
                 editableLength
             )
