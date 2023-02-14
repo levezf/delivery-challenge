@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--  Padding  -->
+    <dimen name="padding_default_horizontal">20dp</dimen>
+    <dimen name="padding_height_bottom_button">24dp</dimen>
+    <dimen name="padding_drawable_error">16dp</dimen>
+
+    <!--  Margin   -->
+    <dimen name="margin_first_item">24dp</dimen>
+    <dimen name="margin_horizontal_bottom_button">16dp</dimen>
+
+    <!--  Radius  -->
+    <dimen name="radius_default_button">6dp</dimen>
+
+    <!--  Height  -->
+    <dimen name="height_divider">1dp</dimen>
+    <dimen name="height_button">56dp</dimen>
+    <dimen name="height_content_bottom_button">80dp</dimen>
+
+    <!--  Text size  -->
+    <dimen name="text_size_error_message">16sp</dimen>
+
+</resources>
