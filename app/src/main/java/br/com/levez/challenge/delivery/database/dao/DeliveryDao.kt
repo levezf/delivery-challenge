@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface DeliveryDao {
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertOrUpdate(delivery: Delivery): Long
 
     @Query("SELECT COUNT(1) FROM deliveries WHERE external_id = :externalId")
@@ -18,4 +18,7 @@ interface DeliveryDao {
 
     @Query("SELECT * FROM DeliveryMinimal ORDER BY id")
     fun getAllMinimal(): Flow<List<DeliveryMinimal>>
+
+    @Query("SELECT * FROM deliveries WHERE id = :id")
+    suspend fun getById(id: Long): Delivery?
 }

@@ -6,8 +6,6 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import androidx.lifecycle.distinctUntilChanged
-import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import br.com.levez.challenge.delivery.R
 import br.com.levez.challenge.delivery.exception.DeliveryException
@@ -28,6 +26,7 @@ class DeliveryRegistrationViewModel(
 ) : ViewModel() {
 
     companion object {
+        private const val SAVED_ID_DELIVERY_EDITING = "id_delivery_editing"
         private const val SAVED_EXTERNAL_ID = "external_id"
         private const val SAVED_NUMBER_OF_PACKAGES = "number_of_packages"
         private const val SAVED_DEADLINE = "deadline"
@@ -80,15 +79,9 @@ class DeliveryRegistrationViewModel(
 
     val internetConnectionState = networkManager.connectionState().asLiveData()
 
-    val availableCities: LiveData<List<City>?> = Transformations.switchMap(addressState) { state ->
-        liveData {
-            if (state.isNullOrBlank()) {
-                emit(null)
-            } else {
-                emit(localityRepository.getCitiesByState(state))
-            }
-        }
-    }.distinctUntilChanged()
+    private val _availableCities = MutableLiveData<List<City>?>(null)
+    val availableCities: LiveData<List<City>?>
+        get() = _availableCities
 
     private val _failure = MutableLiveData<Int?>(null)
     val failure: LiveData<Int?>
@@ -104,9 +97,42 @@ class DeliveryRegistrationViewModel(
             state == DeliveryRegistrationUiState.Editing
         }
 
-    init {
-        availableCities.observeForever {
-            addressCity.value = null
+    val isDeliveryIdEditable: LiveData<Boolean>
+        get() = Transformations.map(isLayoutEditable) { layoutEditable ->
+            layoutEditable && idDelivery == null
+        }
+
+    var idDelivery: Long? = savedStateHandle[SAVED_ID_DELIVERY_EDITING]
+        set(value) {
+            field = value
+            fillFields(value)
+        }
+
+    private fun fillFields(idDelivery: Long?) {
+        idDelivery?.let { id ->
+            viewModelScope.launch {
+                _uiState.value = DeliveryRegistrationUiState.Loading
+
+                val delivery = deliveryRepository.getDeliveryById(id)
+                delivery?.let {
+                    externalId.value = it.externalId
+                    numberOfPackages.value = it.numberOfPackages
+                    deadline.value = it.deadline
+                    customerName.value = it.customerName
+                    customerCpf.value = it.customerCpf
+                    addressZipCode.value = it.addressZipCode
+                    addressState.value = it.addressState
+                    addressCity.value = it.addressCity
+                    addressNeighborhood.value = it.addressNeighborhood
+                    addressStreet.value = it.addressStreet
+                    addressNumber.value = it.addressNumber
+                    addressComplement.value = it.addressComplement
+                }
+
+                refreshCity(false)
+
+                _uiState.value = DeliveryRegistrationUiState.Editing
+            }
         }
     }
 
@@ -127,6 +153,7 @@ class DeliveryRegistrationViewModel(
                 addressStreet.value.sanitize(),
                 addressNumber.value.sanitize(),
                 addressComplement.value.sanitize(),
+                idDelivery,
             )
 
             try {
@@ -137,7 +164,7 @@ class DeliveryRegistrationViewModel(
                 return@launch
             }
 
-            if (deliveryRepository.existsExternalId(delivery.externalId)) {
+            if (idDelivery == null && deliveryRepository.existsExternalId(delivery.externalId)) {
                 _failure.value = R.string.error_external_id_already_registered
                 _uiState.value = DeliveryRegistrationUiState.Editing
                 return@launch
@@ -149,14 +176,31 @@ class DeliveryRegistrationViewModel(
                 return@launch
             }
 
-            _uiState.value = DeliveryRegistrationUiState.Registered
+            _uiState.value = DeliveryRegistrationUiState.Finished
+        }
+    }
+
+    fun refreshCity(clearCity: Boolean = true) {
+        viewModelScope.launch {
+            _uiState.value = DeliveryRegistrationUiState.Loading
+
+            if (clearCity) {
+                addressCity.value = null
+            }
+
+            _availableCities.value = addressState.value?.let { state ->
+                localityRepository.getCitiesByState(state)
+            }
+
+            _uiState.value = DeliveryRegistrationUiState.Editing
         }
     }
 }
 
 sealed interface DeliveryRegistrationUiState {
+    object Loading : DeliveryRegistrationUiState
     object Registering : DeliveryRegistrationUiState
     object Editing : DeliveryRegistrationUiState
-    object Registered : DeliveryRegistrationUiState
+    object Finished : DeliveryRegistrationUiState
     object NoInternetConnection : DeliveryRegistrationUiState
 }

@@ -22,7 +22,7 @@ data class DeliveryMinimal(
     val deadline: String,
     @ColumnInfo("address")
     val address: String,
-    val id: Long? = null,
+    val id: Long,
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

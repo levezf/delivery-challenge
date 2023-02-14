@@ -17,8 +17,8 @@ class DeliveryListViewModel(
         private const val TIMEOUT_IN_MILLIS = 5_000L
     }
 
-    private val _openDeliveryRegistration = SingleLiveEvent<Void>()
-    val openDeliveryRegistration: SingleLiveEvent<Void>
+    private val _openDeliveryRegistration = SingleLiveEvent<Long?>()
+    val openDeliveryRegistration: SingleLiveEvent<Long?>
         get() = _openDeliveryRegistration
 
     val uiState: StateFlow<ListDeliveryUiState> =

@@ -10,22 +10,29 @@ import br.com.levez.challenge.delivery.R
 import br.com.levez.challenge.delivery.databinding.ItemDeliveryBinding
 import br.com.levez.challenge.delivery.model.DeliveryMinimal
 
-class DeliveryListAdapter :
+typealias OnDeliveryClick = (Long) -> Unit
+
+class DeliveryListAdapter(
+    private val listener: OnDeliveryClick,
+) :
     ListAdapter<DeliveryMinimal, DeliveryListAdapter.DeliveryViewHolder>(DeliveryComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DeliveryViewHolder =
         DeliveryViewHolder.create(parent)
 
     override fun onBindViewHolder(holder: DeliveryViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(listener, getItem(position))
     }
 
     class DeliveryViewHolder(
         private val binding: ItemDeliveryBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(delivery: DeliveryMinimal) {
-            binding.delivery = delivery
+        fun bind(listener: OnDeliveryClick, delivery: DeliveryMinimal) {
+            binding.apply {
+                this.delivery = delivery
+                this.root.setOnClickListener { listener.invoke(delivery.id) }
+            }
         }
 
         companion object {
