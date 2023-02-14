@@ -1,3 +1,5 @@
 package br.com.levez.challenge.delivery.extension
 
-fun String?.sanitize() = orEmpty().trim()
+fun String.onlyDigits(): String = replace("\\D".toRegex(), "")
+
+fun String?.sanitize(): String = orEmpty().trim()

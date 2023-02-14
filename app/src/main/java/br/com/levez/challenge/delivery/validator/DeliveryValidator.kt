@@ -4,6 +4,7 @@ import androidx.core.text.isDigitsOnly
 import br.com.levez.challenge.delivery.exception.DeliveryException
 import br.com.levez.challenge.delivery.exception.InvalidCPFDeliveryException
 import br.com.levez.challenge.delivery.exception.RequiredFieldsNotFilledDeliveryException
+import br.com.levez.challenge.delivery.extension.onlyDigits
 import br.com.levez.challenge.delivery.model.Delivery
 
 object DeliveryValidator {
@@ -27,38 +28,40 @@ object DeliveryValidator {
 
     private fun Delivery.isRequiredFieldsNotFilled(): Boolean =
         externalId.isBlank() ||
-            numberOfPackages.isBlank() ||
-            deadline.isBlank() ||
-            customerName.isBlank() ||
-            customerCpf.isBlank() ||
-            addressZipCode.isBlank() ||
-            addressState.isBlank() ||
-            addressCity.isBlank() ||
-            addressNeighborhood.isBlank() ||
-            addressStreet.isBlank() ||
-            addressNumber.isBlank()
+                numberOfPackages.isBlank() ||
+                deadline.isBlank() ||
+                customerName.isBlank() ||
+                customerCpf.isBlank() ||
+                addressZipCode.isBlank() ||
+                addressState.isBlank() ||
+                addressCity.isBlank() ||
+                addressNeighborhood.isBlank() ||
+                addressStreet.isBlank() ||
+                addressNumber.isBlank()
 
-    private fun Delivery.isInvalidCPF(): Boolean =
-        when {
-            customerCpf.isEmpty() -> true
-            customerCpf.isDigitsOnly().not() -> true
-            customerCpf.length != CPF_LENGTH -> true
-            customerCpf.all { it == customerCpf[0] } -> true
+    private fun Delivery.isInvalidCPF(): Boolean {
+        val cpf = customerCpf.onlyDigits()
+        return when {
+            cpf.isEmpty() -> true
+            cpf.isDigitsOnly().not() -> true
+            cpf.length != CPF_LENGTH -> true
+            cpf.all { it == cpf.first() } -> true
             else -> {
                 val rangeCpfNumber = IntRange(0, POSITION_CPF_LAST_DIGIT)
 
                 val digit1 = rangeCpfNumber.sumOf {
-                    (it + 1) * customerCpf[it].digitToInt()
+                    (it + 1) * cpf[it].digitToInt()
                 }.rem(CPF_LENGTH).takeIf { it <= MAX_VALUE_DIGIT } ?: DEFAULT_DIGIT_VALUE
 
                 val digit2 = rangeCpfNumber.sumOf {
-                    it * customerCpf[it].digitToInt()
+                    it * cpf[it].digitToInt()
                 }.let {
                     (it + (digit1 * POSITION_VERIFYING_DIGIT_1)).rem(CPF_LENGTH)
                 }.takeIf { it <= MAX_VALUE_DIGIT } ?: DEFAULT_DIGIT_VALUE
 
-                customerCpf[POSITION_VERIFYING_DIGIT_1].digitToInt() != digit1 ||
-                    customerCpf[POSITION_VERIFYING_DIGIT_2].digitToInt() != digit2
+                cpf[POSITION_VERIFYING_DIGIT_1].digitToInt() != digit1 ||
+                        cpf[POSITION_VERIFYING_DIGIT_2].digitToInt() != digit2
             }
         }
+    }
 }

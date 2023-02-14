@@ -29,15 +29,22 @@ class DeliveryRegistrationFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         binding = FragmentDeliveryRegistrationBinding.inflate(inflater).apply {
+            editTextDeadline.addTextChangedListener(
+                SimpleMaskTextWatcher.date(editTextDeadline)
+            )
+            editTextZipCode.addTextChangedListener(
+                SimpleMaskTextWatcher.cep(editTextZipCode)
+            )
+            editTextCustomerCpf.addTextChangedListener(
+                SimpleMaskTextWatcher.cpf(editTextCustomerCpf)
+            )
+
             lifecycleOwner = this@DeliveryRegistrationFragment.viewLifecycleOwner
             viewModel = this@DeliveryRegistrationFragment.viewModel
 
             includeBottomButton.bottomActionButton.setOnClickListener {
                 this@DeliveryRegistrationFragment.viewModel.validateAndRegisterDelivery()
             }
-
-            editTextDeadline.addTextChangedListener(SimpleMaskTextWatcher.date())
-            editTextZipCode.addTextChangedListener(SimpleMaskTextWatcher.cep())
         }
 
         with(viewModel) {
