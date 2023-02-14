@@ -6,7 +6,11 @@
     <color name="secondary_light">#FFF0DF</color>
     <color name="secondary">#FDBC70</color>
 
+    <color name="gray_10">#F5F5F5</color>
     <color name="gray_20">#E4E4E4</color>
+    <color name="gray_40">#A5A5A5</color>
+    <color name="gray_60">#6B6B6B</color>
+    <color name="gray_80">#464646</color>
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>

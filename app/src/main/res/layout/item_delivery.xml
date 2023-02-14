@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="delivery"
+            type="br.com.levez.challenge.delivery.model.DeliveryMinimal" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/padding_vertical_item"
+        android:paddingTop="@dimen/padding_vertical_item"
+        android:background="?attr/selectableItemBackground">
+
+        <TextView
+            android:id="@+id/text_external_id"
+            style="@style/Widget.TextView.ItemDelivery.ExternalId"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{delivery.externalId}"
+            app:layout_constraintEnd_toStartOf="@+id/text_deadline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="0001" />
+
+        <TextView
+            android:id="@+id/text_deadline"
+            style="@style/Widget.TextView.ItemDelivery.Deadline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{delivery.deadline}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="14/02/2023" />
+
+        <TextView
+            android:id="@+id/text_address"
+            style="@style/Widget.TextView.ItemDelivery.Address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_between_fields_item"
+            android:text="@{delivery.address}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_external_id"
+            tools:text="Rua, Numero, Complemento - Bairro. XXXXX-XXX. Cidade/UF" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

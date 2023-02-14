@@ -6,9 +6,11 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import br.com.levez.challenge.delivery.database.dao.DeliveryDao
 import br.com.levez.challenge.delivery.model.Delivery
+import br.com.levez.challenge.delivery.model.DeliveryMinimal
 
 @Database(
     entities = [Delivery::class],
+    views = [DeliveryMinimal::class],
     version = 1,
     exportSchema = false,
 )

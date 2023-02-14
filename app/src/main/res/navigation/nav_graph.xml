@@ -2,21 +2,33 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/deliveryRegistrationFragment">
+    app:startDestination="@id/deliveryListFragment">
 
     <fragment
         android:id="@+id/deliveryRegistrationFragment"
         android:name="br.com.levez.challenge.delivery.ui.registration.DeliveryRegistrationFragment"
-        android:label="DeliveryRegistrationFragment" >
+        android:label="@string/title_registration_delivery">
+        <argument
+            android:name="ShowAppBar"
+            android:defaultValue="true" />
 
         <action
             android:id="@+id/action_deliveryRegistrationFragment_to_noConnectionActivity"
             app:destination="@id/noConnectionActivity" />
     </fragment>
+
     <activity
         android:id="@+id/noConnectionActivity"
         android:name="br.com.levez.challenge.delivery.ui.connection.NoConnectionActivity"
-        android:label="NoConnectionActivity" />
+        android:label="@string/title_no_connection"/>
 
+    <fragment
+        android:id="@+id/deliveryListFragment"
+        android:name="br.com.levez.challenge.delivery.ui.list.DeliveryListFragment"
+        android:label="@string/title_delivery">
+        <action
+            android:id="@+id/action_deliveryListFragment_to_deliveryRegistrationFragment"
+            app:destination="@id/deliveryRegistrationFragment" />
+    </fragment>
 
 </navigation>
