@@ -31,7 +31,7 @@ class DeliveryListFragment : Fragment() {
 
     private lateinit var binding: FragmentDeliveryListBinding
 
-    private val deliveryListAdapter = DeliveryListAdapter()
+    private val deliveryListAdapter = DeliveryListAdapter(::openDeliveryRegistration)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -69,10 +69,12 @@ class DeliveryListFragment : Fragment() {
         }
     }
 
-    private fun openDeliveryRegistration(@Suppress("UNUSED_PARAMETER") void: Void?) {
+    private fun openDeliveryRegistration(idDelivery: Long?) {
         findNavController().navigate(
             DeliveryListFragmentDirections
-                .actionDeliveryListFragmentToDeliveryRegistrationFragment()
+                .actionDeliveryListFragmentToDeliveryRegistrationFragment(
+                    idDelivery = idDelivery?.toString()
+                )
         )
     }
 

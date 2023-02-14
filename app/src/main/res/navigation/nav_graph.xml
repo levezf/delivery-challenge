@@ -6,11 +6,16 @@
 
     <fragment
         android:id="@+id/deliveryRegistrationFragment"
-        android:name="br.com.levez.challenge.delivery.ui.registration.DeliveryRegistrationFragment"
-        android:label="@string/title_registration_delivery">
+        android:name="br.com.levez.challenge.delivery.ui.registration.DeliveryRegistrationFragment">
         <argument
-            android:name="ShowAppBar"
+            android:name="showAppBar"
             android:defaultValue="true" />
+
+        <argument
+            android:name="idDelivery"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
 
         <action
             android:id="@+id/action_deliveryRegistrationFragment_to_noConnectionActivity"
@@ -19,13 +24,11 @@
 
     <activity
         android:id="@+id/noConnectionActivity"
-        android:name="br.com.levez.challenge.delivery.ui.connection.NoConnectionActivity"
-        android:label="@string/title_no_connection"/>
+        android:name="br.com.levez.challenge.delivery.ui.connection.NoConnectionActivity" />
 
     <fragment
         android:id="@+id/deliveryListFragment"
-        android:name="br.com.levez.challenge.delivery.ui.list.DeliveryListFragment"
-        android:label="@string/title_delivery">
+        android:name="br.com.levez.challenge.delivery.ui.list.DeliveryListFragment">
         <action
             android:id="@+id/action_deliveryListFragment_to_deliveryRegistrationFragment"
             app:destination="@id/deliveryRegistrationFragment" />

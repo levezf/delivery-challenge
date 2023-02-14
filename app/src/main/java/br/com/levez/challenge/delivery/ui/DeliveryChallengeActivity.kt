@@ -12,6 +12,7 @@ import androidx.navigation.ui.setupWithNavController
 import br.com.levez.challenge.delivery.R
 import br.com.levez.challenge.delivery.databinding.ActivityDeliveryChallengeBinding
 import br.com.levez.challenge.delivery.ui.common.extension.applyNavigationBackIcon
+import br.com.levez.challenge.delivery.ui.common.extension.applyTitle
 import br.com.levez.challenge.delivery.ui.common.extension.isAppBarVisible
 
 class DeliveryChallengeActivity : AppCompatActivity(), NavController.OnDestinationChangedListener {
@@ -47,6 +48,7 @@ class DeliveryChallengeActivity : AppCompatActivity(), NavController.OnDestinati
     ) {
         binding.apply {
             toolbar.applyNavigationBackIcon()
+            toolbar.applyTitle(arguments)
             layoutAppBar.isVisible = arguments.isAppBarVisible()
         }
     }

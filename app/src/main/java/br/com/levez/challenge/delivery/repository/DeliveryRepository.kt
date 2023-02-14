@@ -14,4 +14,6 @@ class DeliveryRepository(private val deliveryDao: DeliveryDao) {
 
     suspend fun existsExternalId(externalId: String): Boolean =
         deliveryDao.existsExternalId(externalId) > 0
+
+    suspend fun getDeliveryById(id: Long): Delivery? = deliveryDao.getById(id)
 }
