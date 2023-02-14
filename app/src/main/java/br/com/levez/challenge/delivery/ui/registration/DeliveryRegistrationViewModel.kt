@@ -95,7 +95,7 @@ class DeliveryRegistrationViewModel(
         get() = _failure
 
     private val _uiState: MutableLiveData<DeliveryRegistrationUiState> =
-        savedStateHandle.getLiveData("", DeliveryRegistrationUiState.Editing)
+        MutableLiveData(DeliveryRegistrationUiState.Editing)
     val uiState: LiveData<DeliveryRegistrationUiState>
         get() = _uiState
 

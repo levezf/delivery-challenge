@@ -4,10 +4,15 @@
     <dimen name="padding_default_horizontal">20dp</dimen>
     <dimen name="padding_height_bottom_button">24dp</dimen>
     <dimen name="padding_drawable_error">16dp</dimen>
+    <dimen name="padding_badge_delivery">8dp</dimen>
+    <dimen name="padding_vertical_item">20dp</dimen>
 
     <!--  Margin   -->
     <dimen name="margin_first_item">24dp</dimen>
     <dimen name="margin_horizontal_bottom_button">16dp</dimen>
+    <dimen name="margin_start_delivery">12dp</dimen>
+    <dimen name="margin_float_action_button">16dp</dimen>
+    <dimen name="margin_between_fields_item">8dp</dimen>
 
     <!--  Radius  -->
     <dimen name="radius_default_button">6dp</dimen>
@@ -17,7 +22,13 @@
     <dimen name="height_button">56dp</dimen>
     <dimen name="height_content_bottom_button">80dp</dimen>
 
+    <!--  Width  -->
+    <dimen name="width_min_badge_delivery">28dp</dimen>
+
     <!--  Text size  -->
     <dimen name="text_size_error_message">16sp</dimen>
+    <dimen name="text_size_badge_counter">14sp</dimen>
+    <dimen name="text_size_title">22sp</dimen>
+    <dimen name="text_size_toolbar">16sp</dimen>
 
 </resources>

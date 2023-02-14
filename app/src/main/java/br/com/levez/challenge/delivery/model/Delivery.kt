@@ -10,7 +10,6 @@ import androidx.room.PrimaryKey
     indices = [Index(value = ["id", "external_id"], unique = true)]
 )
 data class Delivery(
-
     @ColumnInfo("external_id")
     val externalId: String,
     @ColumnInfo("number_of_packages")

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="br.com.levez.challenge.delivery.ui.list.DeliveryListViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.list.DeliveryListFragment">
+
+        <TextView
+            android:id="@+id/text_title"
+            style="@style/Widget.TextView.Title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_default_horizontal"
+            android:layout_marginTop="@dimen/margin_first_item"
+            android:text="@string/title_delivery"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/badge_counter_deliveries"
+            style="@style/Widget.TextView.BadgeCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/margin_start_delivery"
+            android:minWidth="@dimen/width_min_badge_delivery"
+            android:paddingStart="@dimen/padding_badge_delivery"
+            android:paddingEnd="@dimen/padding_badge_delivery"
+            app:layout_constraintBottom_toBottomOf="@id/text_title"
+            app:layout_constraintStart_toEndOf="@id/text_title"
+            app:layout_constraintTop_toTopOf="@id/text_title"
+            tools:text="1" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_deliveries"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/margin_first_item"
+            android:clipToPadding="false"
+            android:paddingStart="@dimen/padding_default_horizontal"
+            android:paddingEnd="@dimen/padding_default_horizontal"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_title"
+            tools:itemCount="10"
+            tools:listitem="@layout/item_delivery"
+            tools:visibility="visible" />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_title"
+            tools:visibility="visible" />
+
+        <include
+            android:id="@+id/layout_empty_list"
+            layout="@layout/content_empty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_title"
+            tools:visibility="visible" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fab_add_delivery"
+            style="@style/Widget.FloatingActionButton.ExtendedWithIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->viewModel.openDeliveryRegistration()}"
+            android:text="@string/button_new_delivery"
+            app:icon="@drawable/ic_add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

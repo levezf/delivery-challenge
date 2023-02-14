@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -9,361 +10,354 @@
             type="br.com.levez.challenge.delivery.ui.registration.DeliveryRegistrationViewModel" />
     </data>
 
-
-    <ScrollView xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
         tools:context=".ui.registration.DeliveryRegistrationFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/include_bottom_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.core.widget.NestedScrollView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toTopOf="@id/include_bottom_button"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/padding_height_bottom_button">
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/input_layout_delivery_id"
-                        style="@style/Widget.DeliveryChallenge.TextInputLayout.OutlinedBox"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_first_item"
-                        android:enabled="@{viewModel.isLayoutEditable()}"
-                        android:paddingStart="@dimen/padding_default_horizontal"
-                        android:paddingEnd="@dimen/padding_default_horizontal"
-                        app:helperText="@string/label_required"
-                        app:helperTextEnabled="true"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edit_text_delivery_id"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:hint="@string/hint_delivery_external_id"
-                            android:imeOptions="actionNext"
-                            android:inputType="textNoSuggestions|numberSigned"
-                            android:text="@={viewModel.externalId}" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/input_layout_number_packages"
-                        style="@style/Widget.DeliveryChallenge.TextInputLayout.OutlinedBox"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_first_item"
-                        android:enabled="@{viewModel.isLayoutEditable()}"
-                        android:paddingStart="@dimen/padding_default_horizontal"
-                        android:paddingEnd="@dimen/padding_default_horizontal"
-                        app:errorEnabled="true"
-                        app:helperText="@string/label_required"
-                        app:helperTextEnabled="true"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/input_layout_delivery_id">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edit_text_number_packages"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:hint="@string/hint_number_of_packages"
-                            android:imeOptions="actionNext"
-                            android:inputType="numberSigned"
-                            android:text="@={viewModel.numberOfPackages}" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/input_layout_deadline"
-                        style="@style/Widget.DeliveryChallenge.TextInputLayout.OutlinedBox"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_first_item"
-                        android:enabled="@{viewModel.isLayoutEditable()}"
-                        android:paddingStart="@dimen/padding_default_horizontal"
-                        android:paddingEnd="@dimen/padding_default_horizontal"
-                        app:helperText="@string/label_required"
-                        app:helperTextEnabled="true"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/input_layout_number_packages">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edit_text_deadline"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:digits="0123456789/"
-                            android:hint="@string/Hint_deadline"
-                            android:imeOptions="actionNext"
-                            android:inputType="date"
-                            android:maxLength="10"
-                            android:text="@={viewModel.deadline}" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/input_layout_customer_name"
-                        style="@style/Widget.DeliveryChallenge.TextInputLayout.OutlinedBox"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_first_item"
-                        android:enabled="@{viewModel.isLayoutEditable()}"
-                        android:paddingStart="@dimen/padding_default_horizontal"
-                        android:paddingEnd="@dimen/padding_default_horizontal"
-                        app:helperText="@string/label_required"
-                        app:helperTextEnabled="true"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/input_layout_deadline">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edit_text_customer_name"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:hint="@string/hint_customer_name"
-                            android:imeOptions="actionNext"
-                            android:inputType="textPersonName|textCapWords"
-                            android:text="@={viewModel.customerName}" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/input_layout_customer_cpf"
-                        style="@style/Widget.DeliveryChallenge.TextInputLayout.OutlinedBox"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_first_item"
-                        android:enabled="@{viewModel.isLayoutEditable()}"
-                        android:paddingStart="@dimen/padding_default_horizontal"
-                        android:paddingEnd="@dimen/padding_default_horizontal"
-                        app:helperText="@string/label_required"
-                        app:helperTextEnabled="true"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/input_layout_customer_name">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edit_text_customer_cpf"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:digits="0123456789.-"
-                            android:hint="@string/hint_customer_cpf"
-                            android:imeOptions="actionNext"
-                            android:inputType="numberSigned"
-                            android:maxLength="14"
-                            android:text="@={viewModel.customerCpf}" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/input_layout_zip_code"
-                        style="@style/Widget.DeliveryChallenge.TextInputLayout.OutlinedBox"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_first_item"
-                        android:enabled="@{viewModel.isLayoutEditable()}"
-                        android:paddingStart="@dimen/padding_default_horizontal"
-                        android:paddingEnd="@dimen/padding_default_horizontal"
-                        app:helperText="@string/label_required"
-                        app:helperTextEnabled="true"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/input_layout_customer_cpf">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edit_text_zip_code"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:digits="0123456789-"
-                            android:hint="@string/hint_address_zip_code"
-                            android:imeOptions="actionNext"
-                            android:inputType="number"
-                            android:maxLength="9"
-                            android:text="@={viewModel.addressZipCode}" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/input_layout_state"
-                        style="@style/Widget.DeliveryChallenge.TextInputLayout.OutlinedBox"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_first_item"
-                        android:enabled="@{viewModel.isLayoutEditable()}"
-                        android:paddingStart="@dimen/padding_default_horizontal"
-                        android:paddingEnd="@dimen/padding_default_horizontal"
-                        app:helperText="@string/label_required"
-                        app:helperTextEnabled="true"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/input_layout_zip_code">
-
-                        <br.com.levez.challenge.delivery.ui.common.customview.SelectableAutoCompleteTextView
-                            android:id="@+id/auto_complete_state"
-                            style="@style/Widget.MaterialComponents.AutoCompleteTextView.FilledBox"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:clickable="true"
-                            android:completionThreshold="0"
-                            android:focusable="true"
-                            android:focusableInTouchMode="false"
-                            android:hint="@string/hint_address_state"
-                            android:imeOptions="actionNext"
-                            android:inputType="none"
-                            android:text="@={viewModel.addressState}"
-                            app:simpleItems="@array/brazil_states" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/input_layout_city"
-                        style="@style/Widget.DeliveryChallenge.TextInputLayout.OutlinedBox"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_first_item"
-                        android:enabled="@{viewModel.isLayoutEditable()}"
-                        android:paddingStart="@dimen/padding_default_horizontal"
-                        android:paddingEnd="@dimen/padding_default_horizontal"
-                        app:helperText="@string/label_required"
-                        app:helperTextEnabled="true"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/input_layout_state">
-
-                        <br.com.levez.challenge.delivery.ui.common.customview.SelectableAutoCompleteTextView
-                            android:id="@+id/auto_complete_city"
-                            style="@style/Widget.MaterialComponents.AutoCompleteTextView.FilledBox"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:clickable="true"
-                            android:completionThreshold="0"
-                            android:focusable="true"
-                            android:focusableInTouchMode="false"
-                            android:hint="@string/hint_address_city"
-                            android:imeOptions="actionNext"
-                            android:inputType="none"
-                            android:text="@={viewModel.addressCity}"
-                            app:availableCities="@{viewModel.availableCities}" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/input_layout_neighborhood"
-                        style="@style/Widget.DeliveryChallenge.TextInputLayout.OutlinedBox"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_first_item"
-                        android:enabled="@{viewModel.isLayoutEditable()}"
-                        android:paddingStart="@dimen/padding_default_horizontal"
-                        android:paddingEnd="@dimen/padding_default_horizontal"
-                        app:helperText="@string/label_required"
-                        app:helperTextEnabled="true"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/input_layout_city">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edit_text_neighborhood"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:hint="@string/hint_address_neighborhood"
-                            android:imeOptions="actionNext"
-                            android:inputType="textPostalAddress|textCapWords"
-                            android:text="@={viewModel.addressNeighborhood}" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/input_layout_street"
-                        style="@style/Widget.DeliveryChallenge.TextInputLayout.OutlinedBox"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_first_item"
-                        android:enabled="@{viewModel.isLayoutEditable()}"
-                        android:paddingStart="@dimen/padding_default_horizontal"
-                        android:paddingEnd="@dimen/padding_default_horizontal"
-                        app:helperText="@string/label_required"
-                        app:helperTextEnabled="true"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/input_layout_neighborhood">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edit_text_street"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:hint="@string/hint_address_street"
-                            android:imeOptions="actionNext"
-                            android:inputType="textPostalAddress|textCapWords"
-                            android:text="@={viewModel.addressStreet}" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/input_layout_number"
-                        style="@style/Widget.DeliveryChallenge.TextInputLayout.OutlinedBox"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_first_item"
-                        android:enabled="@{viewModel.isLayoutEditable()}"
-                        android:paddingStart="@dimen/padding_default_horizontal"
-                        android:paddingEnd="@dimen/padding_default_horizontal"
-                        app:helperText="@string/label_required"
-                        app:helperTextEnabled="true"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/input_layout_street">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edit_text_number"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:hint="@string/hint_address_number"
-                            android:imeOptions="actionNext"
-                            android:inputType="textPostalAddress|textCapWords"
-                            android:text="@={viewModel.addressNumber}" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/input_layout_complement"
-                        style="@style/Widget.DeliveryChallenge.TextInputLayout.OutlinedBox"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_first_item"
-                        android:enabled="@{viewModel.isLayoutEditable()}"
-                        android:paddingStart="@dimen/padding_default_horizontal"
-                        android:paddingEnd="@dimen/padding_default_horizontal"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/input_layout_number">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edit_text_complement"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:hint="@string/hint_address_complement"
-                            android:imeOptions="actionDone"
-                            android:inputType="textPostalAddress|textCapWords"
-                            android:text="@={viewModel.addressComplement}" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.core.widget.NestedScrollView>
-
-            <include
-                android:id="@+id/include_bottom_button"
-                layout="@layout/content_bottom_button"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:paddingBottom="@dimen/padding_height_bottom_button">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_layout_delivery_id"
+                    style="@style/Widget.DeliveryChallenge.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_first_item"
+                    android:enabled="@{viewModel.isLayoutEditable()}"
+                    android:paddingStart="@dimen/padding_default_horizontal"
+                    android:paddingEnd="@dimen/padding_default_horizontal"
+                    app:helperText="@string/label_required"
+                    app:helperTextEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_delivery_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="@string/hint_delivery_external_id"
+                        android:imeOptions="actionNext"
+                        android:inputType="textNoSuggestions|numberSigned"
+                        android:text="@={viewModel.externalId}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_layout_number_packages"
+                    style="@style/Widget.DeliveryChallenge.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_first_item"
+                    android:enabled="@{viewModel.isLayoutEditable()}"
+                    android:paddingStart="@dimen/padding_default_horizontal"
+                    android:paddingEnd="@dimen/padding_default_horizontal"
+                    app:errorEnabled="true"
+                    app:helperText="@string/label_required"
+                    app:helperTextEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/input_layout_delivery_id">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_number_packages"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="@string/hint_number_of_packages"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberSigned"
+                        android:text="@={viewModel.numberOfPackages}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_layout_deadline"
+                    style="@style/Widget.DeliveryChallenge.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_first_item"
+                    android:enabled="@{viewModel.isLayoutEditable()}"
+                    android:paddingStart="@dimen/padding_default_horizontal"
+                    android:paddingEnd="@dimen/padding_default_horizontal"
+                    app:helperText="@string/label_required"
+                    app:helperTextEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/input_layout_number_packages">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_deadline"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:digits="0123456789/"
+                        android:hint="@string/Hint_deadline"
+                        android:imeOptions="actionNext"
+                        android:inputType="date"
+                        android:maxLength="10"
+                        android:text="@={viewModel.deadline}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_layout_customer_name"
+                    style="@style/Widget.DeliveryChallenge.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_first_item"
+                    android:enabled="@{viewModel.isLayoutEditable()}"
+                    android:paddingStart="@dimen/padding_default_horizontal"
+                    android:paddingEnd="@dimen/padding_default_horizontal"
+                    app:helperText="@string/label_required"
+                    app:helperTextEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/input_layout_deadline">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_customer_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="@string/hint_customer_name"
+                        android:imeOptions="actionNext"
+                        android:inputType="textPersonName|textCapWords"
+                        android:text="@={viewModel.customerName}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_layout_customer_cpf"
+                    style="@style/Widget.DeliveryChallenge.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_first_item"
+                    android:enabled="@{viewModel.isLayoutEditable()}"
+                    android:paddingStart="@dimen/padding_default_horizontal"
+                    android:paddingEnd="@dimen/padding_default_horizontal"
+                    app:helperText="@string/label_required"
+                    app:helperTextEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/input_layout_customer_name">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_customer_cpf"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:digits="0123456789.-"
+                        android:hint="@string/hint_customer_cpf"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberSigned"
+                        android:maxLength="14"
+                        android:text="@={viewModel.customerCpf}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_layout_zip_code"
+                    style="@style/Widget.DeliveryChallenge.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_first_item"
+                    android:enabled="@{viewModel.isLayoutEditable()}"
+                    android:paddingStart="@dimen/padding_default_horizontal"
+                    android:paddingEnd="@dimen/padding_default_horizontal"
+                    app:helperText="@string/label_required"
+                    app:helperTextEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/input_layout_customer_cpf">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_zip_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:digits="0123456789-"
+                        android:hint="@string/hint_address_zip_code"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:maxLength="9"
+                        android:text="@={viewModel.addressZipCode}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_layout_state"
+                    style="@style/Widget.DeliveryChallenge.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_first_item"
+                    android:enabled="@{viewModel.isLayoutEditable()}"
+                    android:paddingStart="@dimen/padding_default_horizontal"
+                    android:paddingEnd="@dimen/padding_default_horizontal"
+                    app:helperText="@string/label_required"
+                    app:helperTextEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/input_layout_zip_code">
+
+                    <br.com.levez.challenge.delivery.ui.common.customview.SelectableAutoCompleteTextView
+                        android:id="@+id/auto_complete_state"
+                        style="@style/Widget.MaterialComponents.AutoCompleteTextView.FilledBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:completionThreshold="0"
+                        android:focusable="true"
+                        android:focusableInTouchMode="false"
+                        android:hint="@string/hint_address_state"
+                        android:imeOptions="actionNext"
+                        android:inputType="none"
+                        android:text="@={viewModel.addressState}"
+                        app:simpleItems="@array/brazil_states" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_layout_city"
+                    style="@style/Widget.DeliveryChallenge.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_first_item"
+                    android:enabled="@{viewModel.isLayoutEditable()}"
+                    android:paddingStart="@dimen/padding_default_horizontal"
+                    android:paddingEnd="@dimen/padding_default_horizontal"
+                    app:helperText="@string/label_required"
+                    app:helperTextEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/input_layout_state">
+
+                    <br.com.levez.challenge.delivery.ui.common.customview.SelectableAutoCompleteTextView
+                        android:id="@+id/auto_complete_city"
+                        style="@style/Widget.MaterialComponents.AutoCompleteTextView.FilledBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:completionThreshold="0"
+                        android:focusable="true"
+                        android:focusableInTouchMode="false"
+                        android:hint="@string/hint_address_city"
+                        android:imeOptions="actionNext"
+                        android:inputType="none"
+                        android:text="@={viewModel.addressCity}"
+                        app:availableCities="@{viewModel.availableCities}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_layout_neighborhood"
+                    style="@style/Widget.DeliveryChallenge.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_first_item"
+                    android:enabled="@{viewModel.isLayoutEditable()}"
+                    android:paddingStart="@dimen/padding_default_horizontal"
+                    android:paddingEnd="@dimen/padding_default_horizontal"
+                    app:helperText="@string/label_required"
+                    app:helperTextEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/input_layout_city">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_neighborhood"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="@string/hint_address_neighborhood"
+                        android:imeOptions="actionNext"
+                        android:inputType="textPostalAddress|textCapWords"
+                        android:text="@={viewModel.addressNeighborhood}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_layout_street"
+                    style="@style/Widget.DeliveryChallenge.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_first_item"
+                    android:enabled="@{viewModel.isLayoutEditable()}"
+                    android:paddingStart="@dimen/padding_default_horizontal"
+                    android:paddingEnd="@dimen/padding_default_horizontal"
+                    app:helperText="@string/label_required"
+                    app:helperTextEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/input_layout_neighborhood">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_street"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="@string/hint_address_street"
+                        android:imeOptions="actionNext"
+                        android:inputType="textPostalAddress|textCapWords"
+                        android:text="@={viewModel.addressStreet}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_layout_number"
+                    style="@style/Widget.DeliveryChallenge.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_first_item"
+                    android:enabled="@{viewModel.isLayoutEditable()}"
+                    android:paddingStart="@dimen/padding_default_horizontal"
+                    android:paddingEnd="@dimen/padding_default_horizontal"
+                    app:helperText="@string/label_required"
+                    app:helperTextEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/input_layout_street">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="@string/hint_address_number"
+                        android:imeOptions="actionNext"
+                        android:inputType="textPostalAddress|textCapWords"
+                        android:text="@={viewModel.addressNumber}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_layout_complement"
+                    style="@style/Widget.DeliveryChallenge.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_first_item"
+                    android:enabled="@{viewModel.isLayoutEditable()}"
+                    android:paddingStart="@dimen/padding_default_horizontal"
+                    android:paddingEnd="@dimen/padding_default_horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/input_layout_number">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_complement"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="@string/hint_address_complement"
+                        android:imeOptions="actionDone"
+                        android:inputType="textPostalAddress|textCapWords"
+                        android:text="@={viewModel.addressComplement}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+        <include
+            android:id="@+id/include_bottom_button"
+            layout="@layout/content_bottom_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

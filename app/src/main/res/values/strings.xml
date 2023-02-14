@@ -3,6 +3,7 @@
     <string name="app_name">DeliveryChallenge</string>
 
     <!--  Delivery Registration  -->
+    <string name="title_registration_delivery">Nova entrega</string>
     <string name="hint_delivery_external_id">ID da Entrega</string>
     <string name="hint_number_of_packages">Quantidade de pacotes</string>
     <string name="Hint_deadline">Data limite da entrega</string>
@@ -24,8 +25,14 @@
     <string name="text_registering">Salvando…</string>
     <string name="text_create">Salvar</string>
 
-
     <!--  No connection  -->
+    <string name="title_no_connection">Sem conexão</string>
     <string name="error_no_connection">Sem conexão.\nPor favor conecte-se a uma rede para continuar.</string>
+
+    <!--  Delivery List  -->
+    <string name="title_delivery">Entregas</string>
+    <string name="button_new_delivery">Nova entrega</string>
+    <string name="message_empty_delivery_list">Você ainda não possui entregas cadastradas. Clique no botão abaixo para adicionar uma nova entrega.</string>
+
 
 </resources>
