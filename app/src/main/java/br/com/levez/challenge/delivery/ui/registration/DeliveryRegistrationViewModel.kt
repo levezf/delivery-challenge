@@ -2,6 +2,7 @@ package br.com.levez.challenge.delivery.ui.registration
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -23,19 +24,59 @@ class DeliveryRegistrationViewModel(
     private val deliveryRepository: DeliveryRepository,
     private val localityRepository: LocalityRepository,
     private val networkManager: INetworkManager,
+    private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
-    val externalId: MutableLiveData<String?> = MutableLiveData(null)
-    val numberOfPackages: MutableLiveData<String?> = MutableLiveData(null)
-    val deadline: MutableLiveData<String?> = MutableLiveData(null)
-    val customerName: MutableLiveData<String?> = MutableLiveData(null)
-    val customerCpf: MutableLiveData<String?> = MutableLiveData(null)
-    val addressZipCode: MutableLiveData<String?> = MutableLiveData(null)
-    val addressState: MutableLiveData<String?> = MutableLiveData(null)
-    val addressCity: MutableLiveData<String?> = MutableLiveData(null)
-    val addressNeighborhood: MutableLiveData<String?> = MutableLiveData(null)
-    val addressStreet: MutableLiveData<String?> = MutableLiveData(null)
-    val addressNumber: MutableLiveData<String?> = MutableLiveData(null)
-    val addressComplement: MutableLiveData<String?> = MutableLiveData(null)
+
+    companion object {
+        private const val SAVED_EXTERNAL_ID = "external_id"
+        private const val SAVED_NUMBER_OF_PACKAGES = "number_of_packages"
+        private const val SAVED_DEADLINE = "deadline"
+        private const val SAVED_CUSTOMER_NAME = "customer_name"
+        private const val SAVED_CUSTOMER_CPF = "customer_cpf"
+        private const val SAVED_ADDRESS_ZIP_CODE = "address_zip_code"
+        private const val SAVED_ADDRESS_STATE = "address_state"
+        private const val SAVED_ADDRESS_CITY = "address_city"
+        private const val SAVED_ADDRESS_NEIGHBORHOOD = "address_neighborhood"
+        private const val SAVED_ADDRESS_STREET = "address_street"
+        private const val SAVED_ADDRESS_NUMBER = "address_number"
+        private const val SAVED_ADDRESS_COMPLEMENT = "address_complement"
+    }
+
+    val externalId: MutableLiveData<String?> =
+        savedStateHandle.getLiveData(SAVED_EXTERNAL_ID, null)
+
+    val numberOfPackages: MutableLiveData<String?> =
+        savedStateHandle.getLiveData(SAVED_NUMBER_OF_PACKAGES, null)
+
+    val deadline: MutableLiveData<String?> =
+        savedStateHandle.getLiveData(SAVED_DEADLINE, null)
+
+    val customerName: MutableLiveData<String?> =
+        savedStateHandle.getLiveData(SAVED_CUSTOMER_NAME, null)
+
+    val customerCpf: MutableLiveData<String?> =
+        savedStateHandle.getLiveData(SAVED_CUSTOMER_CPF, null)
+
+    val addressZipCode: MutableLiveData<String?> =
+        savedStateHandle.getLiveData(SAVED_ADDRESS_ZIP_CODE, null)
+
+    val addressState: MutableLiveData<String?> =
+        savedStateHandle.getLiveData(SAVED_ADDRESS_STATE, null)
+
+    val addressCity: MutableLiveData<String?> =
+        savedStateHandle.getLiveData(SAVED_ADDRESS_CITY, null)
+
+    val addressNeighborhood: MutableLiveData<String?> =
+        savedStateHandle.getLiveData(SAVED_ADDRESS_NEIGHBORHOOD, null)
+
+    val addressStreet: MutableLiveData<String?> =
+        savedStateHandle.getLiveData(SAVED_ADDRESS_STREET, null)
+
+    val addressNumber: MutableLiveData<String?> =
+        savedStateHandle.getLiveData(SAVED_ADDRESS_NUMBER, null)
+
+    val addressComplement: MutableLiveData<String?> =
+        savedStateHandle.getLiveData(SAVED_ADDRESS_COMPLEMENT, null)
 
     val internetConnectionState = networkManager.connectionState().asLiveData()
 
@@ -54,7 +95,7 @@ class DeliveryRegistrationViewModel(
         get() = _failure
 
     private val _uiState: MutableLiveData<DeliveryRegistrationUiState> =
-        MutableLiveData(DeliveryRegistrationUiState.Editing)
+        savedStateHandle.getLiveData("", DeliveryRegistrationUiState.Editing)
     val uiState: LiveData<DeliveryRegistrationUiState>
         get() = _uiState
 
