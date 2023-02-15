@@ -1,0 +1,19 @@
+changelog:
+  categories:
+    - title: Exciting New Features 🎉
+        labels:
+          - feature
+          - enhancement
+    - title: Improvements 🚀
+        labels:
+          - improvement
+    - title: Documentations 🗃️
+        labels:
+          - documentation
+    - title: Bugfix 🛠
+      labels:
+        - bug
+        - bugfix
+    - title: Other Changes
+      labels:
+        - "*"
