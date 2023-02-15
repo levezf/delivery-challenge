@@ -36,15 +36,24 @@ jobs:
       - name: Grant gradlew executable
         run: chmod +x ./gradlew
 
+      - name: Decode Keystore
+          env:
+            ENCODED_KEYSTORE: ${{ secrets.KEYSTORE }}
+          run: echo $ENCODED_KEYSTORE | base64 -di > ./keys/keystore_release
+
       - name: Build debug version
         run: ./gradlew assembleDebug
 
       - name: Build release version
         run: ./gradlew assembleRelease
+        env:
+          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
 
       - name: Upload the artifacts
         uses: skx/github-action-publish-binaries@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: '**/app/build/outputs/apk/**.apk'
+          args: '*.apk'
