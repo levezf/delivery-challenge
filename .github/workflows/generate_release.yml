@@ -51,9 +51,16 @@ jobs:
           SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
           SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
 
-      - name: Upload the artifacts
+      - name: Upload the debug artifact
         uses: skx/github-action-publish-binaries@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: '*.apk'
+          args: '**/app/build/outputs/apk/debug/*.apk'
+
+      - name: Upload the release artifact
+        uses: skx/github-action-publish-binaries@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: '**/app/build/outputs/apk/release/*.apk'
