@@ -7,6 +7,12 @@ plugins {
     id 'org.jetbrains.dokka'
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'com.gladed.androidgitversion'
+}
+
+androidGitVersion {
+    codeFormat 'MNNPPP'
+    format '%tag%%.count%%'
 }
 
 android {
@@ -17,8 +23,8 @@ android {
         applicationId "br.com.levez.challenge.delivery"
         minSdk 21
         targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        versionCode androidGitVersion.code()
+        versionName androidGitVersion.name()
 
         buildConfigField "String", "BASE_URL", "\"https://servicodados.ibge.gov.br/api/v1/localidades/\""
 
