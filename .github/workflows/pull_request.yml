@@ -13,6 +13,10 @@ on:
       - 'develop'
       - 'main'
 
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   lint:
     name: Lint Android
@@ -31,7 +35,7 @@ jobs:
         uses: android-actions/setup-android@v2
 
       - name: Apply gradle dependencies caches
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             ~/.gradle/caches
@@ -70,7 +74,7 @@ jobs:
         uses: android-actions/setup-android@v2
 
       - name: Apply gradle dependencies caches
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             ~/.gradle/caches
@@ -93,7 +97,7 @@ jobs:
           path: "**/app/build/reports/detekt"
 
   code_formatting:
-    name:
+    name: Code Formatting
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -109,7 +113,7 @@ jobs:
         uses: android-actions/setup-android@v2
 
       - name: Apply gradle dependencies caches
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             ~/.gradle/caches
@@ -148,7 +152,7 @@ jobs:
         uses: android-actions/setup-android@v2
 
       - name: Apply gradle dependencies caches
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             ~/.gradle/caches
