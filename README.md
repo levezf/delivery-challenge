@@ -25,6 +25,15 @@ Para compilar uma APK de debug, execute o comando abaixo na raíz do projeto.
 > **Note**
 > APKs de relase só serão geradas via CI pelo fluxo de geração de release.
 
+Para instalar a APK em deu dispositivo, utilize o comando abaixo:
+```sh
+adb install app-debug.apk
+```
+> **Note**
+> Para o comando funcionar é necessário que tenha o adb instalado corretamente
+> e esteja no local do arquivo app-debug.apk. Ainda, é necessário que o dispositivo 
+> esteja conectado ao computador e com o modo de depuração ativado.
+
 Para verificar a formatação de código execute o comando abaixo na raíz do projeto.
 ```sh
 ./gradlew ktlintCheck
