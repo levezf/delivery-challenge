@@ -53,14 +53,16 @@ jobs:
 
       - name: Upload the debug artifact
         uses: skx/github-action-publish-binaries@master
+        continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: '**/app/build/outputs/apk/debug/app-debug.apk'
+          args: '**/build/outputs/apk/debug/app-debug.apk'
 
       - name: Upload the release artifact
         uses: skx/github-action-publish-binaries@master
+        continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: '**/app/build/outputs/apk/release/app-release.apk'
+          args: '**/build/outputs/apk/release/app-release.apk'
