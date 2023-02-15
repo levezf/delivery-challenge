@@ -1,0 +1,39 @@
+kover {
+    filters {
+        classes {
+            includes.add("br.com.levez.*")
+            excludes.addAll("*.databinding.*", "*BuildConfig*")
+        }
+    }
+
+    instrumentation {
+        excludeTasks.add "testReleaseUnitTest"
+    }
+
+    htmlReport {
+        onCheck.set(true)
+    }
+
+    verify {
+        onCheck.set(true)
+        rule {
+            enabled = true
+            target = 'ALL'
+            bound {
+                minValue = 0
+                counter = 'LINE'
+                valueType = 'COVERED_PERCENTAGE'
+            }
+        }
+    }
+}
+
+koverMerged {
+    enable()
+
+    filters {
+        classes {
+            excludes.addAll("*.databinding.*", "*BuildConfig*")
+        }
+    }
+}

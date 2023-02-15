@@ -1,0 +1,9 @@
+dokkaHtml.configure {
+    dokkaSourceSets.configureEach {
+        moduleName.set("DeliveryChallenge")
+        moduleVersion.set(project.version.toString())
+        reportUndocumented.set(true)
+        skipEmptyPackages.set(true)
+        includes.from("$projectDir/Module.md")
+    }
+}

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget.TextView.Title" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/text_size_title</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/gray_80</item>
+        <item name="fontStyle">normal</item>
+        <item name="fontWeight">700</item>
+        <item name="android:gravity">start</item>
+    </style>
+
+    <style name="Widget.TextView.BadgeCounter" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/text_size_badge_counter</item>
+        <item name="android:textColor">@color/primary</item>
+        <item name="fontStyle">normal</item>
+        <item name="fontWeight">600</item>
+        <item name="android:gravity">center</item>
+        <item name="android:minWidth">28dp</item>
+        <item name="android:minHeight">24dp</item>
+        <item name="android:background">@drawable/shape_badge_counter</item>
+    </style>
+
+    <style name="Widget.DeliveryChallenge.Button" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/shape_bottom_button</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="cornerRadius">@dimen/radius_default_button</item>
+        <item name="android:layout_marginEnd">@dimen/padding_default_horizontal</item>
+        <item name="android:layout_marginStart">@dimen/padding_default_horizontal</item>
+        <item name="android:layout_marginTop">@dimen/margin_horizontal_bottom_button</item>
+        <item name="android:layout_marginBottom">@dimen/margin_horizontal_bottom_button</item>
+    </style>
+
+    <style name="Widget.DeliveryChallenge.TextInputLayout.OutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox" />
+
+    <style name="Widget.TextView.ItemDelivery.ExternalId" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/gray_60</item>
+        <item name="fontWeight">600</item>
+        <item name="fontStyle">normal</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="Widget.TextView.ItemDelivery.Address" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/gray_40</item>
+        <item name="fontWeight">400</item>
+        <item name="fontStyle">normal</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="Widget.TextView.ItemDelivery.Deadline" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/gray_60</item>
+        <item name="fontWeight">400</item>
+        <item name="fontStyle">normal</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="ShapeAppearance.FloatingActionButton.OverlayExtended" parent="Widget.AppCompat.TextView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">6dp</item>
+    </style>
+
+    <style name="Widget.FloatingActionButton.ExtendedWithIcon" parent="Widget.MaterialComponents.ExtendedFloatingActionButton">
+        <item name="iconTint">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_marginEnd">@dimen/margin_float_action_button</item>
+        <item name="android:layout_marginBottom">@dimen/margin_float_action_button</item>
+        <item name="shapeAppearanceOverlay">
+            @style/ShapeAppearance.FloatingActionButton.OverlayExtended
+        </item>
+        <item name="backgroundTint">@color/button_primary_color_selector</item>
+    </style>
+
+    <style name="ToolbarTextAppearance">
+        <item name="fontWeight">500</item>
+        <item name="android:textSize">@dimen/text_size_toolbar</item>
+    </style>
+
+    <style name="Widget.Toolbar" parent="">
+        <item name="navigationIcon">@drawable/ic_navigation_back</item>
+        <item name="navigationIconTint">@color/gray_60</item>
+        <item name="titleCentered">true</item>
+        <item name="titleEnabled">true</item>
+        <item name="titleTextStyle">@style/ToolbarTextAppearance</item>
+        <item name="titleTextColor">@color/gray_60</item>
+        <item name="android:background">?attr/colorSurface</item>
+        <item name="subtitleTextColor">@color/material_on_surface_emphasis_medium</item>
+        <item name="android:theme">@style/ThemeOverlay.MaterialComponents.Toolbar.Surface</item>
+    </style>
+</resources>

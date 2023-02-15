@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/deliveryListFragment">
+
+    <fragment
+        android:id="@+id/deliveryRegistrationFragment"
+        android:name="br.com.levez.challenge.delivery.ui.registration.DeliveryRegistrationFragment">
+        <argument
+            android:name="showAppBar"
+            android:defaultValue="true" />
+
+        <argument
+            android:name="idDelivery"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+
+        <action
+            android:id="@+id/action_deliveryRegistrationFragment_to_noConnectionActivity"
+            app:destination="@id/noConnectionActivity" />
+    </fragment>
+
+    <activity
+        android:id="@+id/noConnectionActivity"
+        android:name="br.com.levez.challenge.delivery.ui.connection.NoConnectionActivity" />
+
+    <fragment
+        android:id="@+id/deliveryListFragment"
+        android:name="br.com.levez.challenge.delivery.ui.list.DeliveryListFragment">
+        <action
+            android:id="@+id/action_deliveryListFragment_to_deliveryRegistrationFragment"
+            app:destination="@id/deliveryRegistrationFragment" />
+    </fragment>
+
+</navigation>
