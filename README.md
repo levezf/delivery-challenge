@@ -1,6 +1,4 @@
-# DeliveryChallenge 
-[![Generate release](https://github.com/levezf/delivery-challenge/actions/workflows/generate_release.yml/badge.svg)](https://github.com/levezf/delivery-challenge/actions/workflows/generate_release.yml)
-[![Pull Request Validation](https://github.com/levezf/delivery-challenge/actions/workflows/pull_request.yml/badge.svg)](https://github.com/levezf/delivery-challenge/actions/workflows/pull_request.yml)
+# DeliveryChallenge [![Generate release](https://github.com/levezf/delivery-challenge/actions/workflows/generate_release.yml/badge.svg)](https://github.com/levezf/delivery-challenge/actions/workflows/generate_release.yml) [![Pull Request Validation](https://github.com/levezf/delivery-challenge/actions/workflows/pull_request.yml/badge.svg)](https://github.com/levezf/delivery-challenge/actions/workflows/pull_request.yml)
 
 ## Descrição do Projeto
 
@@ -58,7 +56,7 @@ As seguintes validações estão disponíveis nas Pull Requests:
 - [x] Validação de lint android
 - [x] Análise estática de código kotlin
 - [x] Build da versão de debug do projeto
-- [] Cobertura mínima de testes
+- [ ] Cobertura mínima de testes
 
 ![img.png](images/pull_request_validations.png)
 
