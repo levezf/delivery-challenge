@@ -23,7 +23,7 @@ Para compilar uma APK de debug, execute o comando abaixo na raíz do projeto.
 > **Note**
 > APKs de relase só serão geradas via CI pelo fluxo de geração de release.
 
-Para instalar a APK em deu dispositivo, utilize o comando abaixo:
+Para instalar a APK em deu dispositivo, utilize o comando abaixo.
 ```sh
 adb install app-debug.apk
 ```
@@ -56,7 +56,6 @@ As seguintes validações estão disponíveis nas Pull Requests:
 - [x] Validação de lint android
 - [x] Análise estática de código kotlin
 - [x] Build da versão de debug do projeto
-- [ ] Cobertura mínima de testes
 
 ![img.png](images/pull_request_validations.png)
 
