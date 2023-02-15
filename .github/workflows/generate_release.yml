@@ -37,9 +37,9 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Decode Keystore
-          env:
-            ENCODED_KEYSTORE: ${{ secrets.KEYSTORE }}
-          run: echo $ENCODED_KEYSTORE | base64 -di > ./keys/keystore_release
+        env:
+          ENCODED_KEYSTORE: ${{ secrets.KEYSTORE }}
+        run: echo $ENCODED_KEYSTORE | base64 -di > ./keys/keystore_release
 
       - name: Build debug version
         run: ./gradlew assembleDebug
