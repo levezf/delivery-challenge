@@ -42,8 +42,8 @@ jobs:
         run: ./gradlew assembleRelease
 
       - name: Upload the artifacts
-          uses: skx/github-action-publish-binaries@master
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          with:
-            args: '**/app/build/outputs/apk/**.apk'
+        uses: skx/github-action-publish-binaries@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: '**/app/build/outputs/apk/**.apk'
