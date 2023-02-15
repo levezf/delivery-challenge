@@ -50,7 +50,7 @@ class DeliveryListAdapter(
 
     class DeliveryComparator : DiffUtil.ItemCallback<DeliveryMinimal>() {
         override fun areItemsTheSame(oldItem: DeliveryMinimal, newItem: DeliveryMinimal): Boolean {
-            return oldItem.id === newItem.id
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(

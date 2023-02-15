@@ -7,7 +7,6 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.annotation.StringRes
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
@@ -18,7 +17,8 @@ import androidx.navigation.fragment.navArgs
 import br.com.levez.challenge.delivery.R
 import br.com.levez.challenge.delivery.databinding.FragmentDeliveryRegistrationBinding
 import br.com.levez.challenge.delivery.network.manager.ConnectionState
-import br.com.levez.challenge.delivery.ui.registration.mask.SimpleMaskTextWatcher
+import br.com.levez.challenge.delivery.ui.registration.extension.initializeListeners
+import br.com.levez.challenge.delivery.ui.registration.extension.initializeMasks
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -53,7 +53,7 @@ class DeliveryRegistrationFragment : Fragment() {
             lifecycleOwner = this@DeliveryRegistrationFragment.viewLifecycleOwner
             viewModel = this@DeliveryRegistrationFragment.viewModel
 
-            initializeListeners()
+            initializeListeners(this@DeliveryRegistrationFragment.viewModel)
         }
 
         with(viewModel) {
@@ -70,27 +70,6 @@ class DeliveryRegistrationFragment : Fragment() {
         if (viewModel.idDelivery != null) {
             initializeMenu()
         }
-    }
-
-    private fun FragmentDeliveryRegistrationBinding.initializeListeners() {
-        autoCompleteState.onItemClickListener = AdapterView.OnItemClickListener { _, _, _, _ ->
-            this@DeliveryRegistrationFragment.viewModel.refreshCity()
-        }
-        includeBottomButton.bottomActionButton.setOnClickListener {
-            this@DeliveryRegistrationFragment.viewModel.validateAndRegisterDelivery()
-        }
-    }
-
-    private fun FragmentDeliveryRegistrationBinding.initializeMasks() {
-        editTextDeadline.addTextChangedListener(
-            SimpleMaskTextWatcher.date(editTextDeadline)
-        )
-        editTextZipCode.addTextChangedListener(
-            SimpleMaskTextWatcher.cep(editTextZipCode)
-        )
-        editTextCustomerCpf.addTextChangedListener(
-            SimpleMaskTextWatcher.cpf(editTextCustomerCpf)
-        )
     }
 
     private fun changeInternetConnection(connectionState: ConnectionState) {

@@ -42,7 +42,7 @@ data class DeliveryMinimal(
         var result = externalId.hashCode()
         result = 31 * result + deadline.hashCode()
         result = 31 * result + address.hashCode()
-        result = 31 * result + (id?.hashCode() ?: 0)
+        result = 31 * result + id.hashCode()
         return result
     }
 }
